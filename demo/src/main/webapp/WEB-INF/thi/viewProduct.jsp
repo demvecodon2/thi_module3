@@ -30,7 +30,7 @@
 <%
     }
 %>
-<a href="student">Back to Home</a>
+<a href="home">Back to Home</a>
 </body>
 </html>
 

@@ -4,6 +4,7 @@ import model.Product;
 import repository.IProductRepo;
 import repository.ProductRepo;
 
+import java.util.Date;
 import java.util.List;
 
 public class ProductService implements IProductService {
@@ -31,5 +32,10 @@ public class ProductService implements IProductService {
     @Override
     public List<Product> findBestSellingProducts() {
         return productRepo.findBestSellingProducts();
+    }
+
+    @Override
+    public int getTotalSalesInDateRange(Date startDate, Date endDate) {
+        return productRepo.getTotalSalesInDateRange(startDate, endDate);
     }
 }

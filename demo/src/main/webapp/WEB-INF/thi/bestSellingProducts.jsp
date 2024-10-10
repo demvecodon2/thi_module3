@@ -21,7 +21,7 @@
         <th>Price</th>
         <th>Discount</th>
         <th>Inventory</th>
-        <th>Sales</th>
+
     </tr>
     <%
         List<Product> bestSellingProducts = (List<Product>) request.getAttribute("bestSellingProducts");
@@ -33,7 +33,7 @@
         <td><%= product.getPrice() %></td>
         <td><%= product.getDiscount() %></td>
         <td><%= product.getInventory() %></td>
-        <td><%= product.getSales() %></td> <!-- Giả định bạn có phương thức getSales() -->
+
     </tr>
     <%
         }
@@ -42,4 +42,3 @@
 <a href="home?action=list">Back to Product List</a>
 </body>
 </html>
-

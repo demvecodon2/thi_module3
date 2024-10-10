@@ -6,15 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="model.Product" %>
 <%@ page import="java.util.List" %>
-<!DOCTYPE html>
+<%@ page import="model.Product" %>
 <html>
 <head>
-    <title>List of Products</title>
+    <title>Product List</title>
 </head>
 <body>
-<h1>List of Products</h1>
+<h1>Product List</h1>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -40,13 +39,13 @@
     } else {
     %>
     <tr>
-        <td colspan="5">No products found.</td>
+        <td colspan="5">No products available.</td>
     </tr>
     <%
         }
     %>
 </table>
-<br>
-<a href="student">Back to Home</a>
+<a href="home?action=add">Add New Product</a>
+<a href="home">Back to Home</a>
 </body>
 </html>

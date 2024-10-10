@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ProductRepo implements IProductRepo {
@@ -38,6 +39,7 @@ public class ProductRepo implements IProductRepo {
                 resultSet.getString("inventory")
         );
     }
+
 
     @Override
     public Product findById(int id) {
@@ -74,7 +76,7 @@ public class ProductRepo implements IProductRepo {
     @Override
     public List<Product> findBestSellingProducts() {
         List<Product> bestSellingProducts = new ArrayList<>();
-        String sql = "SELECT * FROM product ORDER BY sales DESC LIMIT 10";
+        String sql = "SELECT * FROM product ORDER BY sales DESC LIMIT 3";
 
         try (Connection connection = BaseRepository.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
@@ -89,5 +91,26 @@ public class ProductRepo implements IProductRepo {
         }
 
         return bestSellingProducts;
+    }
+
+    @Override
+    public int getTotalSalesInDateRange(Date startDate, Date endDate) {
+        int totalSales = 0;
+        String sql = "SELECT SUM(quantity) FROM sales WHERE sale_date BETWEEN ? AND ?";
+
+        try (Connection connection = BaseRepository.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setDate(1, new java.sql.Date(startDate.getTime()));
+            statement.setDate(2, new java.sql.Date(endDate.getTime()));
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                totalSales = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalSales;
     }
 }
