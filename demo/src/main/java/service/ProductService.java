@@ -10,7 +10,7 @@ public class ProductService implements IProductService {
     private IProductRepo productRepo;
 
     public ProductService() {
-        this.productRepo = new ProductRepo(); // Khởi tạo ProductRepo
+        this.productRepo = new ProductRepo();
     }
 
     @Override

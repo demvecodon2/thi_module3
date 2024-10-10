@@ -27,7 +27,7 @@ public class SystemManagement extends HttpServlet {
         try {
             switch (action) {
                 case "add":
-                    request.getRequestDispatcher("add.jsp").forward(request, response);
+                    request.getRequestDispatcher("/thi/add.jsp").forward(request, response);
                     return;
 
                 case "view":
@@ -58,7 +58,7 @@ public class SystemManagement extends HttpServlet {
 
     private void handleViewAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
-            int productId = Integer.parseInt(request.getParameter("id")); // Lấy ID sản phẩm từ yêu cầu
+            int productId = Integer.parseInt(request.getParameter("id"));
             Product product = productService.findById(productId);
             if (product != null) {
                 request.setAttribute("product", product);
@@ -92,7 +92,7 @@ public class SystemManagement extends HttpServlet {
                 Product newProduct = new Product(0, name, price, discount, inventory);
                 productService.save(newProduct);
 
-                response.sendRedirect("home?action=list"); // Redirect to list after adding
+                response.sendRedirect("home?action=list");
             } catch (NumberFormatException e) {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid price format.");
             } catch (Exception e) {

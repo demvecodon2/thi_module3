@@ -31,7 +31,7 @@ public class ProductRepo implements IProductRepo {
 
     private Product mapRowToProduct(ResultSet resultSet) throws SQLException {
         return new Product(
-                resultSet.getInt("id"),  // Assuming id is an integer in the database
+                resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getInt("price"),
                 resultSet.getString("discount"),
@@ -74,7 +74,7 @@ public class ProductRepo implements IProductRepo {
     @Override
     public List<Product> findBestSellingProducts() {
         List<Product> bestSellingProducts = new ArrayList<>();
-        String sql = "SELECT * FROM product ORDER BY sales DESC LIMIT 10"; // Giả định có cột 'sales'
+        String sql = "SELECT * FROM product ORDER BY sales DESC LIMIT 10";
 
         try (Connection connection = BaseRepository.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
